@@ -1,5 +1,8 @@
 import os
 from datetime import date
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # For MongoDB connection
 DATABASE_NAME = "Proj1"
@@ -67,9 +70,9 @@ MIN_SAMPLES_SPLIT_RANDOM_STATE: int = 101
 MODEL Evaluation related constants
 """
 MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02
-MODEL_BUCKET_NAME = "my-model-mlopsproj"
+MODEL_BUCKET_NAME = "s3-mlops-buck"
 MODEL_PUSHER_S3_KEY = "model-registry"
 
 
-APP_HOST = "0.0.0.0"
-APP_PORT = 5000
+APP_HOST = os.getenv("APP_HOST", "0.0.0.0")
+APP_PORT = int(os.getenv("APP_PORT", 8000))
